@@ -6,12 +6,10 @@ def predict(to_predict, theta0, theta1):
         if km < 0:
             raise Exception("Input cannot be negative.")
         prediction = theta0 + (theta1 * km)
-        if prediction <= 0:
-            prediction = 0
-        return prediction
-    
-    except ValueError:
-        print("L'input n'est pas un nombre.")
+        return max(0, prediction)
+    except ValueError as e:
+        print(f"Erreur : {str(e)}")
+        return None
 
 if __name__ == "__main__":
     with open("./values.json", "r") as file:

@@ -20,6 +20,9 @@ def denormalize_thetas(theta0, theta1, max_mileage, max_price):
     return theta0, theta1
 
 def train(mileages, prices, learning_rate, number_of_iterations):
+    if len(mileages) != len(prices):
+        raise ValueError("Les listes mileages et prices doivent avoir la même taille")
+    
     mileages, max_mileage = normalize(mileages)
     prices, max_price = normalize(prices)
     coef = learning_rate / float(len(mileages))
